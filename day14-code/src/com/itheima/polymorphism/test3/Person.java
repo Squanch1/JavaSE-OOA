@@ -45,7 +45,7 @@ public class Person {
     public void feedPet(Animal a,String something){
         //如果不需要使用子类独有的方法,就不需要对子类强转成父类,直接用父类的引用就行
         //因为多态的特性:运行时成员方法方法看子类虚方法表,其中如果方法重写,就执行子类方法.成员变量看从父类继承过来的成员
-        //对于为什么要写if判断,因为你在设计的时候,并不知道用户要传什么类型的参数进来,为了实现解耦,分类讨论是必要的工作.
+      /*  //对于为什么要写if判断,因为你在设计的时候,并不知道用户要传什么类型的参数进来,为了实现解耦,分类讨论是必要的工作.
         if (a instanceof Dog dog){
             System.out.printf("年龄为%d的%s养了一只%S颜色的%d岁的狗",getAge(),getName(),a.getColor(),a.getAge());
             System.out.println();
@@ -58,7 +58,12 @@ public class Person {
             a.eat("骨头");
         }else {
             System.out.println("没有这个类型,转换失败");
-        }
+        }*/
+        System.out.printf("年龄为%d的%s养了一只%S颜色的%d岁的狗",getAge(),getName(),a.getColor(),a.getAge());
+        System.out.println();
+        a.eat(something);
+
+
 
     }
 }
