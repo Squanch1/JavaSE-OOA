@@ -1,2 +1,2 @@
-# JavaSE-object-oriented-advanced
+# JavaSE-OOA
 JavaSE object-oriented advanced
