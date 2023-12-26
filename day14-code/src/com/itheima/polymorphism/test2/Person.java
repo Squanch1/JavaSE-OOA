@@ -1,5 +1,5 @@
 package com.itheima.polymorphism.test2;
-
+//fully qualified name
 import com.itheima.polymorphism.test1.Cat;
 
 public class Person {

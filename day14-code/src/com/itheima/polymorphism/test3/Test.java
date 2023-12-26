@@ -1,5 +1,7 @@
 package com.itheima.polymorphism.test3;
 
+import java.util.Scanner;
+
 //目前可能还没完全领悟面向对象的思想,还要加油
 //由于Java是一门面向对象的编程语言,面向对象的三个核心就是封装,继承,多态
 //这三个核心都是在设计抽象类的时候用到的,是在设计抽象类里用到的(这个类不包括测试类).
