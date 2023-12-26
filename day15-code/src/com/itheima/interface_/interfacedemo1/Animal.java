@@ -1,8 +1,5 @@
-package com.itheima.abstractclass_method.test1;
-// 如果包名违反了标识符名称硬性规定
-// 1.只能由字母,数字,_,$构成
-// 2.域名反写加文件夹功能,见名知意,全英文小写.
-// 则该文件夹下无法创建Java文件
+package com.itheima.interface_.interfacedemo1;
+
 public abstract class Animal {
     private String name;
     private int age;
@@ -30,11 +27,5 @@ public abstract class Animal {
     public void setAge(int age) {
         this.age = age;
     }
-
-
-    //抽象方法不写方法体,但是一定要有;,而且抽象方法所在的类是一个抽象类.
     public abstract void eat();
-    public void drink(){
-        System.out.println("喝水");
-    }
 }

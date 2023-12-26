@@ -1,6 +1,8 @@
 package com.itheima.polymorphism.test3;
+//IDEA真的离谱,居然还分析中文语法,牛
 
-public class Animal {
+
+public abstract class Animal {
     private int age;
     private String color;
 
@@ -27,8 +29,9 @@ public class Animal {
     public void setColor(String color) {
         this.color = color;
     }
-    public void eat(String something){
-        System.out.println("动物在吃"+something);
+    public abstract void eat(String something);
+    public final void drink(){
+        System.out.println("喝水");
     }
 
 }
