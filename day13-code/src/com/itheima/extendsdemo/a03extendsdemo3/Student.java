@@ -14,5 +14,8 @@ public class Student extends Person{
         //构造方法中调用其他构造方法,这个其他的构造方法和super()一样,只能在构造方法的代码中的第一行.
         super(name, gender);
     }
+    public void test(){
+       staticMethod();
+    }
 
 }

@@ -7,5 +7,12 @@ public class Test {
         frog.setName("青蛙王子");
         frog.eat();
         frog.swim();
+
+        frog.defaultMethod();
+        int test = Frog.TEST;
+        int test1 = frog.TEST;
+
+
+
     }
 }

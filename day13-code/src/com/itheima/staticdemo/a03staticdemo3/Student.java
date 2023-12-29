@@ -1,5 +1,7 @@
 package com.itheima.staticdemo.a03staticdemo3;
 
+import com.itheima.extendstest.a03extendstest3.Cat;
+
 /**
  * 标准JavaBean类先写私有化成员变量
  * 静态变量属于类的层级,存储在静态区中,静态区属于方法区.
@@ -10,7 +12,7 @@ package com.itheima.staticdemo.a03staticdemo3;
  * (构造方法属于特殊的成员方法),构造方法用于对象的实例化时赋值,属于对象层级,一定不能用static修饰
  */
 
-public class Student {
+public class Student extends Cat {
     private String name;
     private int age;
     private String gender;
