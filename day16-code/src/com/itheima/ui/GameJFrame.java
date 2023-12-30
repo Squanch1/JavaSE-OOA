@@ -21,11 +21,14 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
     //以前学的:就近原则,this,super访问规则
     Random r = new Random();
 
-    //这个二位数组相当于是提示了
+    //创建业务条目,因为在ActionListener方法里用到,在initJMenuBar里也用到,所以创建成员变量
     JMenuItem replayGame = new JMenuItem("重新游戏");
     JMenuItem reLogin = new JMenuItem("重新登陆");
     JMenuItem closeGame = new JMenuItem("关闭游戏");
-    JMenuItem officialAccounts = new JMenuItem("打赏");
+    JMenuItem officialAccounts = new JMenuItem("V我50");
+    JMenuItem animal = new JMenuItem("动物");
+    JMenuItem girl = new JMenuItem("美女");
+    JMenuItem sport = new JMenuItem("运动");
 
     int[][] winArray = {
             {1, 2, 3, 4},
@@ -37,7 +40,49 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 
     // 既然ImagineIcon的构造方法需要字符串,我们可以利用字符串可以拼接的特性
     // 创建字符串变量path用于提取反复出现的路径,方便后续更换图片操作.
-    String path = "day16-code\\image\\animal\\animal2\\";
+    String[] animalPath = {
+            "day16-code\\image\\animal\\animal1\\",
+            "day16-code\\image\\animal\\animal2\\",
+            "day16-code\\image\\animal\\animal3\\",
+            "day16-code\\image\\animal\\animal4\\",
+            "day16-code\\image\\animal\\animal5\\",
+            "day16-code\\image\\animal\\animal6\\",
+            "day16-code\\image\\animal\\animal7\\",
+            "day16-code\\image\\animal\\animal8\\",
+    };
+    int animalIndex = 2;
+    String[] girlPath = {
+            "day16-code\\image\\girl\\girl1\\",
+            "day16-code\\image\\girl\\girl2\\",
+            "day16-code\\image\\girl\\girl3\\",
+            "day16-code\\image\\girl\\girl4\\",
+            "day16-code\\image\\girl\\girl5\\",
+            "day16-code\\image\\girl\\girl6\\",
+            "day16-code\\image\\girl\\girl7\\",
+            "day16-code\\image\\girl\\girl8\\",
+            "day16-code\\image\\girl\\girl9\\",
+            "day16-code\\image\\girl\\girl10\\",
+            "day16-code\\image\\girl\\girl11\\",
+            "day16-code\\image\\girl\\girl12\\",
+            "day16-code\\image\\girl\\girl13\\"
+    };
+    int girlIndex = 2;
+
+    String[] sportPath = {
+            "day16-code\\image\\sport\\sport1\\",
+            "day16-code\\image\\sport\\sport2\\",
+            "day16-code\\image\\sport\\sport3\\",
+            "day16-code\\image\\sport\\sport4\\",
+            "day16-code\\image\\sport\\sport5\\",
+            "day16-code\\image\\sport\\sport6\\",
+            "day16-code\\image\\sport\\sport7\\",
+            "day16-code\\image\\sport\\sport8\\",
+            "day16-code\\image\\sport\\sport9\\",
+            "day16-code\\image\\sport\\sport10\\",
+    };
+    int sportIndex = 2;
+
+    String currentPath = animalPath[1];
     int x = 0;
     int y = 0;
     int count = 0;
@@ -75,7 +120,6 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             arr1[i] = arr1[randomIndex];
             arr1[randomIndex] = temp;
         }
-
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[i].length; j++) {
@@ -87,22 +131,13 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 }
             }
         }
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                System.out.print(arr[i][j]+" ");
-            }
-            System.out.println();
-        }
-
     }
 
     private void initImage() {
         getContentPane().removeAll();
-
         JLabel stepCounter = new JLabel("步数:" + count);
         stepCounter.setBounds(50, 30, 100, 20);
         getContentPane().add(stepCounter);
-
         //因为每次移动都会调用initImage方法,所以可以把胜利的运行代码也放到方法里面去.
         if (checkVictory()) {
             JLabel win = new JLabel(new ImageIcon("day16-code\\image\\win.png"));
@@ -114,17 +149,14 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
                 int number = arr[i][j];
                 //把创建一个图片对象,其中一个构造方法是传递路径字符串,如果不存在,则不添加图片.
                 //ImageIcon的特性,先添加的显示在上层,后添加的显示在下层
-                ImageIcon imageIcon = new ImageIcon(path + number + ".jpg");
+                ImageIcon imageIcon = new ImageIcon(currentPath + number + ".jpg");
                 //创建容器来接收图片对象
                 JLabel jLabel = new JLabel(imageIcon);
-
                 //把容器添加到JFrame实例中
                 jLabel.setBounds(105 * j + 83, 105 * i + 134, 105, 105);
-
                 //给每个小图片添加边框
                 BevelBorder bevelBorder = new BevelBorder(BevelBorder.LOWERED);
                 jLabel.setBorder(bevelBorder);
-
                 //contentPane是内容面板,在创建JFrame对象时,JVM自动创建(JFrame的构造方法调用了父类的super())
                 getContentPane().add(jLabel);
             }
@@ -143,7 +175,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         setSize(603, 680);
 
         //设置框架的名称
-        setTitle("拼图游戏单机版 V我50");
+        setTitle("拼图游戏单机版 v1.0");
 
         //设置框架永远居中
         setLocationRelativeTo(null);
@@ -168,21 +200,33 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
 
         //创建JMenu对象来存储JMenuItem对象
         JMenu functionJMenu = new JMenu("功能");
-        JMenu aboutUsJMenu = new JMenu("关于我们");
+        JMenu changePictureJMenu = new JMenu("更换图片");
+        JMenu aboutUsJMenu = new JMenu("CrazyThursday");
 
         //创建JMenuItem对象
 
 
         //用上一级对象的方法来添加下一级的对象
+        changePictureJMenu.add(animal);
+        changePictureJMenu.add(girl);
+        changePictureJMenu.add(sport);
+
+        //JMenu的对象可以调用方法来添加JMenu的对象,也可以添加JMenuItem的对象
+        functionJMenu.add(changePictureJMenu);
+        functionJMenu.add(replayGame);
+        functionJMenu.add(reLogin);
+        functionJMenu.add(closeGame);
         aboutUsJMenu.add(officialAccounts);
+
+
         replayGame.addActionListener(this);
         closeGame.addActionListener(this);
         reLogin.addActionListener(this);
         officialAccounts.addActionListener(this);
+        animal.addActionListener(this);
+        girl.addActionListener(this);
+        sport.addActionListener(this);
 
-        functionJMenu.add(replayGame);
-        functionJMenu.add(reLogin);
-        functionJMenu.add(closeGame);
 
         jMenuBar.add(functionJMenu);
         jMenuBar.add(aboutUsJMenu);
@@ -191,7 +235,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         //虽然目前为止还未创建JFrame的对象,但是在App类的main方法中会创建对象,而且这些代码是在创建对象之后才会执行.
         //add(jMenuBar);
         //最后把JMenuBar添加到JFrame对象里面不能跟用add,要用setJMenuBar.
-        super.setJMenuBar(jMenuBar);
+        setJMenuBar(jMenuBar);
     }
 
     @Override
@@ -209,7 +253,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         if (keyCode == 65) {
             getContentPane().removeAll();
 
-            JLabel all = new JLabel(new ImageIcon(path + "all.jpg"));
+            JLabel all = new JLabel(new ImageIcon(currentPath + "all.jpg"));
             all.setBounds(83, 134, 420, 420);
             getContentPane().add(all);
 
@@ -275,7 +319,7 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             //这里如果直接把winArray赋值给arr,arr就指向了winArray那块空间,原本arr数组的空间就泄漏了
             //之后的checkVictory方法无论怎么比较都是为真,因为比较同一个数组必然相等.
             //以后作弊功能不要直接传址,要在创建一个二维数组.
-            arr = new int[][] {
+            arr = new int[][]{
                     {1, 2, 3, 4},
                     {5, 6, 7, 8},
                     {9, 10, 11, 12},
@@ -296,6 +340,32 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
         return true;
     }
 
+    private JDialog getjDialog() {
+        JLabel jLabel = new JLabel(new ImageIcon("D:\\Code\\itheima\\JavaSE-OOA\\day16-code\\image\\img.png"));
+        jLabel.setSize(646, 698);
+        //JDialog和JFrame可以理解为相似,两者方法几乎类似,又因为只允许单继承,所以这里的JDialog只能创建实例了.
+        JDialog jDialog = new JDialog();
+
+        //设置弹框大小
+        jDialog.setSize(700, 800);
+
+        //设置弹框的标题
+        jDialog.setTitle("收款码");
+
+        //设置弹框永远居中
+        jDialog.setLocationRelativeTo(null);
+
+        //把jLabel添加到到弹框中
+        jDialog.getContentPane().add(jLabel);
+
+        //设置当前页面永远在最上层
+        jDialog.setAlwaysOnTop(true);
+
+        //设置不关闭弹窗无法操作
+        jDialog.setModal(true);
+        return jDialog;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         Object object = e.getSource();
@@ -312,31 +382,49 @@ public class GameJFrame extends JFrame implements KeyListener, ActionListener {
             setVisible(false);
             new LoginJFrame();
         } else if (object == officialAccounts) {
-            JLabel jLabel = new JLabel(new ImageIcon("D:\\Code\\itheima\\JavaSE-OOA\\day16-code\\image\\img.png"));
-            jLabel.setSize(646, 698);
-            //JDialog和JFrame可以理解为相似,两者方法几乎类似
-            JDialog jDialog = new JDialog();
-
-            //设置弹框大小
-            jDialog.setSize(700, 800);
-
-            //设置弹框的标题
-            jDialog.setTitle("收款码");
-
-            //设置弹框永远居中
-            jDialog.setLocationRelativeTo(null);
-
-            //把jLabel添加到到弹框中
-            jDialog.getContentPane().add(jLabel);
-
-            //设置当前页面永远在最上层
-            jDialog.setAlwaysOnTop(true);
-
-            //设置不关闭弹窗无法操作
-            jDialog.setModal(true);
-
+            JDialog jDialog = getjDialog();
             //显示弹窗
             jDialog.setVisible(true);
+        } else if (object == animal) {
+            initDate();
+            count = 0;
+            while (true) {
+                int randomIndex = r.nextInt(animalPath.length);
+                if (randomIndex != animalIndex) {
+                    animalIndex = randomIndex;
+                    break;
+                }
+            }
+            currentPath = animalPath[animalIndex];
+           initImage();
+
+        } else if (object == girl) {
+            initDate();
+            count = 0;
+            while (true) {
+                int randomIndex = r.nextInt(girlPath.length-2)+1;
+                if (randomIndex != girlIndex) {
+                    girlIndex = randomIndex;
+                    break;
+                }
+            }
+            currentPath = girlPath[girlIndex];
+            initImage();
+
+        } else if (object == sport) {
+            initDate();
+            count = 0;
+            while (true) {
+                int randomIndex = r.nextInt(sportPath.length);
+                if (randomIndex != sportIndex) {
+                    sportIndex = randomIndex;
+                    break;
+                }
+            }
+            currentPath = sportPath[sportIndex];
+            initImage();
         }
     }
+
+
 }
