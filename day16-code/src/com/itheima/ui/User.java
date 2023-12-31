@@ -1,7 +1,9 @@
 package com.itheima.ui;
 
+import java.util.Objects;
+
 public class User {
-    private String name ;
+    private String name;
     private int age;
     private String username;
     private String password;
@@ -46,5 +48,25 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    //用alt+insert 快捷生成equals和toString方法
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return age == user.age && Objects.equals(name, user.name) && Objects.equals(username, user.username) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
