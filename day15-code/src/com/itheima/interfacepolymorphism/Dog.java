@@ -7,4 +7,8 @@ public class Dog implements Swim{
         System.out.println(Swim.AGE);
     }
 
+    @Override
+    public void eat() {
+        Swim.super.eat();
+    }
 }

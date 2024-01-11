@@ -17,6 +17,7 @@ public class Test {
         };
         s.swim();
         System.out.println(s.AGE);
+        s.eat();
 
 
     }
