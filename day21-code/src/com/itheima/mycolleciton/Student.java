@@ -16,19 +16,6 @@ public class Student {
         this.gender = gender;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Student student = (Student) object;
-        return age == student.age && Objects.equals(name, student.name) && Objects.equals(gender, student.gender);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(age, name, gender);
-    }
-
     /**
      * 获取
      * @return age
@@ -67,6 +54,19 @@ public class Student {
      */
     public String getGender() {
         return gender;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Student student = (Student) object;
+        return age == student.age && Objects.equals(name, student.name) && Objects.equals(gender, student.gender);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(age, name, gender);
     }
 
     /**
